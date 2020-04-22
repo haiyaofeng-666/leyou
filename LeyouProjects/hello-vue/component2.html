@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--在vue中，所有的vue实例都是组件，包括之前的hello.html-->
+<div id="app">
+    <!--以下的写法是父组件在调用子组件-->
+    <!--<counter>标签对应名称为counter的子组件-->
+    <counter :num1="num" @incr1="incr"></counter>
+</div>
+<script>
+
+    //通用的组件 == 子组件（作用：为了节省代码）
+    //定义全局组件 第一个参数：组件名  第二个参数：组件实例的对象
+    Vue.component("counter", {
+        template: "<button @click='subIncr'>点我加1---{{num1}}</button>",
+        // data() {
+        //     return {
+        //         num: 0
+        //     }
+        // }
+
+        //props验证，没有约束力
+        props:{
+            num1:Number,
+            default:0,
+            required:true
+        },
+        methods:{
+            subIncr(){
+                //要在该方法中调用父组件传递的方法
+                this.$emit("incr1");
+            }
+        }
+
+    });
+
+
+    //父组件
+    const app = new Vue({
+        el: "#app",
+        data: {
+            num: 5
+        },
+        methods:{
+            incr(){
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

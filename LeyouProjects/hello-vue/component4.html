@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>num1:{{num}}</h2>
+    <counter :num1="num" @jia="increment" @jian="decrement"></counter>
+</div>
+<script>
+    Vue.component("counter",{
+        template:`
+        <div>
+        <button @click="jia">
+            加
+        </button>
+        <button @click="jian">
+        减
+</button>
+        </div>
+        `,
+       props:["num1"],
+        methods:{
+            jia(){
+                this.$emit("jia");
+            },
+            jian(){
+                this.$emit("jian");
+            }
+        }
+    });
+    const app= new Vue({
+        el:"#app",
+        data:{
+            num:2
+        },
+        methods:{
+            increment(){
+                this.num++;
+            },
+            decrement(){
+                this.num--;
+            }
+        }
+    })
+</script>
+</body>
+</html>

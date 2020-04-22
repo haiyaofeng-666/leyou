@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="num">
+        <button v-on:click="num++">点我加一</button>
+        <h2>{{name}},呵呵呵，有{{num}}个人来了.</h2>
+    </div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let app= new Vue({
+            el:"#app",
+            data:{
+                name:"啊退",
+                num:50
+            },
+            methods:{}
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--在vue中，所有的vue实例都是组件，包括之前的hello.html-->
+<div id="app">
+    <!--调用局部组件-->
+    <comname></comname>
+</div>
+<script>
+    <!--局部组件-->
+    const hello = {
+        template: "<div>打个招呼：我是{{name}}</div>",
+        data() {
+            return {
+                name: "刘德华"
+            }
+        }
+    };
+
+
+    //父组件
+    const app = new Vue({
+        el: "#app",
+        data: {
+            num: 0
+        },
+        //将局部组件存放到里面
+        components: {
+            //comname：局部组件的名称,调用局部组件使用的名称（不能包含大写字母）  hello:局部组件的对象名
+            comname: hello
+        }
+    })
+</script>
+</body>
+</html>

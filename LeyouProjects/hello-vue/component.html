@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--在vue中，所有的vue实例都是组件，包括之前的hello.html-->
+<div id="app">
+    <!--以下的写法是父组件在调用子组件-->
+    <!--<counter>标签对应名称为counter的子组件-->
+    <counter></counter>
+</div>
+<script>
+
+    //通用的组件 == 子组件（作用：为了节省代码）
+    //定义全局组件 第一个参数：组件名  第二个参数：组件实例的对象
+    Vue.component("counter", {
+        template: "<button @click='num++'>点我加1---{{num}}</button>",
+        data() {
+            return {
+                num: 0
+            }
+        }
+    });
+
+
+    //父组件
+    const app = new Vue({
+        el: "#app",
+        data: {
+            num: 0
+        }
+    })
+</script>
+</body>
+</html>

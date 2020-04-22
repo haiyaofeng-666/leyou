@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/register.js"></script>
+</head>
+<body>
+<div id="app">
+    <span><router-link to="/login">登录</router-link></span>
+    <span><router-link to="/register">注册</router-link></span>
+    </hr>
+    <!--父组件调用子组件-->
+    <!--<login-form></login-form>-->
+    <!--<register-form></register-form>-->
+    <router-view></router-view>
+</div>
+<script>
+    //使用router对象
+    const router = new VueRouter({
+       routes:[
+           {
+               // 要跳转的路径，必须以"/"开头
+               path:"/login",
+
+               //对应的组件名称，自动加载对应组件
+               component:loginForm
+           },
+           {
+               path:"/register",
+               component:registerForm
+           }
+
+       ]
+    });
+
+    //父组件
+    const app = new Vue({
+        el: "#app",
+        // components: {
+        //     loginForm,
+        //     registerForm,
+        // },
+
+        //引用路由：用父组件引用子组件的路由
+        router
+    })
+</script>
+</body>
+</html>
